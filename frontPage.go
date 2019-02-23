@@ -10,8 +10,8 @@ import (
 )
 
 type FrontPage struct {
-	Posts      []Post
-	PageNumber int32
+	Posts      []Post `json:"posts"`
+	PageNumber int32  `json:"page_number"`
 }
 
 // I should probably make sure two posts don't share the same id as that could

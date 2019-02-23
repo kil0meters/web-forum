@@ -12,17 +12,17 @@ import (
 )
 
 type Account struct {
-	Username     string
-	Email        string
-	PasswordHash string
-	CreatedAt    time.Time
+	Username     string    `json:"username"`
+	Email        string    `json:"email"`
+	PasswordHash string    `json:"password_hash"`
+	CreatedAt    time.Time `json:"created_at"`
 }
 
 type Comment struct {
-	Date          time.Time
-	Author        Account
-	UpvoteCount   int32
-	DownvoteCount int32
+	Date          time.Time `json:"date"`
+	Author        Account   `json:"author"`
+	UpvoteCount   int32     `json:"upvote_count"`
+	DownvoteCount int32     `json:"downvote_count"`
 }
 
 func main() {
@@ -43,7 +43,7 @@ func main() {
 
 	r := mux.NewRouter()
 
-	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	r.HandleFunc("/", frontPageHandler)
 	r.HandleFunc("/posts/{id}", postHandler)
 

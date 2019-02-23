@@ -8,14 +8,14 @@ import (
 )
 
 type Post struct {
-	Id            string
-	Title         string
-	Date          time.Time
-	Author        Account
-	Body          string `json:"body"`
-	UpvoteCount   int32
-	DownvoteCount int32
-	CommentCount  int32
+	Id            string    `json:"id"`
+	Title         string    `json:"title"`
+	Date          time.Time `json:"date"`
+	Author        Account   `json:"author"`
+	Body          string    `json:"body"`
+	UpvoteCount   int32     `json:"upvote_count"`
+	DownvoteCount int32     `json:"downvote_count"`
+	CommentCount  int32     `json:"comment_count"`
 }
 
 func postHandler(w http.ResponseWriter, r *http.Request) {
