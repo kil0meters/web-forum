@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <link
+        <link href="static/styles.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="header">
+                <h2 class="page-title">Official Kilometers Forum</h2>
+                <div class="sorting-modes">
+                    <a href="/dis">Dis</a> -
+                    <a href="/popular">Pop</a> -
+                    <a href="/new">New</a>
+                </div>
+            </div>
+            <div class="content-block">
+                {{range .Posts}}
+                <a class="post" href="/posts/{{.Id}}">{{.Title}}</a>
+                {{end}}
+            </div>
+        </div>
+    </body>
+</html>
