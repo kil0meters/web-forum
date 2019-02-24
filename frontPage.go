@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"math/rand"
 	"net/http"
 	"text/template"
@@ -30,24 +31,69 @@ func randomId() string {
 }
 
 func getFrontPageData() FrontPage {
-	posts := make([]Post, 10)
+	log.Print("Loading front page")
 
-	for i := 0; i < 10; i++ {
-		posts[i] = Post{
-			Id:    randomId(),
-			Title: "Lorem Ipsum",
-			Date:  time.Now(),
-			Author: Account{
-				Username:     "kilometers",
-				CreatedAt:    time.Now(),
-				PasswordHash: "ajsdfj",
-			},
-			Body:          "{}",
-			UpvoteCount:   int32(i),
-			DownvoteCount: 0,
-			CommentCount:  0,
-		}
+	rows, err := db.Query("SELECT * FROM posts")
+
+	if err != nil { // TODO: don't kill entire website upon single db error
+		log.Fatal(err)
 	}
+
+	var (
+		id            string
+		title         string
+		date          string
+		author        string
+		body          string
+		upvoteCount   int32
+		downvoteCount int32
+		commentCount  int32
+	)
+
+	var posts []Post
+
+	for rows.Next() {
+		err := rows.Scan(&id, &title, &date, &author, &body,
+			&upvoteCount, &downvoteCount, &commentCount)
+		if err != nil { // TODO
+			log.Fatal(err)
+		}
+
+		dateString, _ := time.Parse(time.RFC3339, date)
+
+		posts = append(posts, Post{
+			Id:    id,
+			Title: title,
+			Date:  dateString,
+			Author: Account{
+				Username:     author,
+				CreatedAt:    time.Now(),
+				PasswordHash: "nil",
+			},
+			Body:          body,
+			UpvoteCount:   upvoteCount,
+			DownvoteCount: downvoteCount,
+			CommentCount:  commentCount,
+		})
+	}
+	rows.Close()
+
+	// for i := 0; i < 10; i++ {
+	// 	posts[i] = Post{
+	// 		Id:    randomId(),
+	// 		Title: "Lorem Ipsum",
+	// 		Date:  time.Now(),
+	// 		Author: Account{
+	// 			Username:     "kilometers",
+	// 			CreatedAt:    time.Now(),
+	// 			PasswordHash: "ajsdfj",
+	// 		},
+	// 		Body:          "{}",
+	// 		UpvoteCount:   int32(i),
+	// 		DownvoteCount: 0,
+	// 		CommentCount:  0,
+	// 	}
+	// }
 	return FrontPage{
 		Posts:      posts,
 		PageNumber: 1,

@@ -36,19 +36,19 @@ func main() {
 		log.Fatalf("error opening file %v", err)
 	}
 
+	initializeDB()
+
 	logWriter := io.MultiWriter(os.Stdout, logFile)
 	log.SetOutput(logWriter)
 	log.SetFlags(log.Ldate | log.Ltime)
-	log.Printf("starting web server at http://localhost:%d", httpPort)
 
 	r := mux.NewRouter()
-
 	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	r.HandleFunc("/", frontPageHandler)
 	r.HandleFunc("/posts/{id}", postHandler)
-
 	r.HandleFunc("/api/front/", frontPageApiHandler)
 
+	log.Printf("starting web server at http://localhost:%d", httpPort)
 	err = http.ListenAndServe(fmt.Sprintf(":%d", httpPort), r)
 	if err != nil {
 		log.Fatal(err)
