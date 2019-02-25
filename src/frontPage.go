@@ -1,4 +1,4 @@
-package main
+package web_forum
 
 import (
 	"encoding/json"
