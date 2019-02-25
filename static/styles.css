@@ -3,11 +3,8 @@
     src: url("charis-sil.woff2");
 }
 
-* {
-    font-family: "SIL", Georgia, serif;
-}
-
 body {
+    font-family: "SIL", Georgia, serif;
     margin: 0;
 }
 
@@ -17,6 +14,7 @@ a {
 }
 
 a:hover {
+    color: #476ac1;
     text-decoration: underline;
 }
 
@@ -31,8 +29,8 @@ a:hover {
 }
 
 .page-title {
-    margin: 0;
-    margin-top: 12px;
+    display: inline-block;
+    margin: 12px 0;
 }
 
 .sorting-modes {
@@ -57,5 +55,103 @@ a:hover {
 }
 
 .post-body {
-    padding: 0 16px;
+    padding-right: 128px;
 }
+
+.submit-button {
+    background-color: #abdbe8;
+    border-radius: 3px;
+    margin: 12px 0;
+    float: right;
+    font-family: "Charis SIL";
+    font-size: 16px;
+    padding: 6px 12px;
+}
+
+.submit-button:hover {
+    color: black;
+}
+
+.submit-button:active {
+    background-color: #abbce8;
+    box-shadow: 0;
+}
+
+.submit-button:after {
+    content: "Submit";
+}
+
+#post-composition-window {
+    display: flex;
+    height: calc(100% - 100px);
+}
+
+.markdown-editor {
+    resize: none;
+
+    font-family: monospace;
+    font-size: 14px;
+
+    width: 100%;
+    /* height: calc(100% - 150px); */
+    margin-right: 8px;
+}
+
+.markdown-preview {
+    width: 100%;
+    overflow-y: scroll;
+    /* height: calc(100% - 150px); */
+    margin-left: 8px;
+}
+
+/* BEGIN MARKDOWN STYLING */
+
+.markdown h1 {
+    font-size: 28px;
+    margin-top: 0px;
+}
+
+.markdown blockquote p {
+}
+
+.markdown blockquote {
+    border-radius: 3px;
+    margin: 0;
+    /* margin: 0 0 0 12px ; */
+    padding: 8px 8px 8px 16px;
+    border-left: 4px solid #c0cdd1;
+    background-color: #dbf2eb;
+}
+
+.markdown blockquote > blockquote {
+    background-color: #f4f7f6;
+}
+
+.markdown blockquote > blockquote > blockquote {
+    background-color: #dbf2eb;
+}
+
+.markdown pre {
+    border-radius: 3px;
+    padding: 12px;
+    background-color: #dbf2eb;
+}
+
+.markdown code {
+    border-radius: 2px;
+    padding: 4px;
+    font-size: 14px;
+    font-family: monospace;
+    background-color: #dbf2eb;
+}
+
+.markdown table {
+    border-collapse: collapse;
+}
+
+.markdown th, td {
+    border: 1px solid #c8cecc;
+    padding: 4px 12px;
+}
+
+/* END MARKDOWN STYLING */

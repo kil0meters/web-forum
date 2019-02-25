@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <link href="/static/github.css" rel="stylesheet" />
+        <script src="/static/highlight.min.js"></script>
+        <script src="/static/marked.min.js"></script>
+
+        <link href="/static/styles.css" rel="stylesheet" />
+        <script src="/static/markdownReloader.js"></script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="header">
+                <a href="/"><h2 class="page-title">Official Kilometers Forum</h2></a>
+                <a class="submit-button"></a>
+            </div>
+            <div id="post-composition-window">
+                <textarea class ="content-block markdown-editor" id="markdown-editor">
+# Markdown Example Document
+
+## Markdown Example Document
+
+### Markdown Example Document
+
+#### Markdown Example Document
+
+##### Markdown Example Document
+
+> Consequatur rem facilis aut cupiditate omnis dolorem doloribus placeat. Ex error natus est atque sunt a provident illo. Et dignissimos fuga qui et nihil voluptatem modi. Ducimus assumenda neque quo ea velit et. Optio iusto quo blanditiis sit molestiae natus.
+
+Ok now this is epic. :)
+
+> This is a comment
+> > This is another comment
+> > > This is a third comment
+
+``` python
+def hello(thing):
+    print("Hello,", thing)
+
+if __name__=='__main__':
+    hello("world")
+```
+
+* these are
+* some epic
+* bullet points
+
+1. this is
+3. a numberd
+8. list
+
+|         | Apples | Pears |
+|---------|--------|-------|
+| Sally   | 2      | 23    |
+| Jackson | 4      | 9     |
+
+
+
+                </textarea>
+                <div class="content-block markdown-preview markdown" id="markdown-preview"></div>
+            </div>
+        </div>
+    </body>
+</html>

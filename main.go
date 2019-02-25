@@ -44,9 +44,17 @@ func main() {
 
 	r := mux.NewRouter()
 	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+
 	r.HandleFunc("/", frontPageHandler)
+
+	r.HandleFunc("/submit", newPostHandler)
+	r.HandleFunc("/submit/", newPostHandler)
+
 	r.HandleFunc("/posts/{id}", postHandler)
+
+	r.HandleFunc("/api/front", frontPageApiHandler)
 	r.HandleFunc("/api/front/", frontPageApiHandler)
+	// r.HandleFunc("/api/submit")
 
 	log.Printf("starting web server at http://localhost:%d", httpPort)
 	err = http.ListenAndServe(fmt.Sprintf(":%d", httpPort), r)
