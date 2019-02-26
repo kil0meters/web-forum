@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <link href="/static/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="header">
+                <a href="/"><h2 class="page-title">Official Kilometers Forum</h2></a>
+            </div>
+            <div class="content-block">
+                <form class="signup-form" action="/signup" method="post">
+                    Username <br/>
+                    <input class="form-input" name="username" type="text" value="" required/> <br/>
+                    Email <br/>
+                    <input class="form-input" name="email" type="email" value="" required/> <br/>
+                    Password (min. 12 characters)<br/>
+                    <input class="form-input" name="password" type="password" minlength="12" required/> <br/>
+                    Remember me <input name="" type="checkbox" value=""/> <br/>
+                    <input class="submit-button" type="submit" value="Submit"/>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
