@@ -1,39 +1,24 @@
-# web-forum
-
+#+TITlE: web-forum
 
 An experimental web forum to be used as hub for my non-existent community.
 
-<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
-**Table of Contents**
-
-- [web-forum](#web-forum)
-- [Building](#building)
-- [Project Philosophy](#project-philosophy)
-    - [No Echo Chambers](#no-echo-chambers)
-        - [Vote Counts are Invisible](#vote-counts-are-invisible)
-    - [Maximize Community Engagement](#maximize-community-engagement)
-    - [Reward High-Quality Contributions](#reward-high-quality-contributions)
-
-<!-- markdown-toc end -->
-
-# Building
+* Building
 
 Dependencies: sqlite3
 
-First, install [go](https://go-la), then:
-```
-go get https://github.com/kil0meters/web-forum
-```
+First, install [[https://go-la][go]] then:
 
-# Project Philosophy
+#+BEGIN_SRC sh
+go get https://github.com/kil0meters/web-forum
+#+END_SRC
+
+* Project Philosophy
 
 Why not just make a subreddit? The answer is simple. When Reddit does something
- like redesigning their website to appeal to younger users, [rolling out
- auto-playing video ads](https://www.digitaltrends.com/social-media/reddit-video-ads-announced/), or
- [turning a long standing Reddit meme into some cash
- crab](https://www.reddit.com/coins), their motivators are not to improve their
- community, but to line the pockets of [their
- investors](https://techcrunch.com/2019/02/11/reddit-300-million/). 
+ like redesigning their website to appeal to younger users, be it [[https://www.digitaltrends.com/social-media/reddit-video-ads-announced/][rolling out
+ auto-playing video ads]], or [[https://www.reddit.com/coins][turning a Reddit meme into a cash crab]], their
+ motivators are not to improve their community, but to line the pockets of [[https://techcrunch.com/2019/02/11/reddit-300-million/][their
+ investors]]. 
  
 At small scales, you can combat these fundamental troubles with the platform by
 strictly moderating, but once your community grows to a to a certain size, you
@@ -50,13 +35,13 @@ There are three main goals this project seeks to attain:
  - Reward high-quality contributions to the community
 
 
-## No Echo Chambers
+** No Echo Chambers
 
 This is something that has plagued communities, especially political ones, since
 the start of time, and there's probably no perfect solution to this, but there
 are a few things which should help combat this on this forum:
 
-### Vote Counts are Invisible
+*** Vote Counts are Invisible
 
 It's a well-documented phenomenon in social media: a user is more likely to
 "like" a post if they see that a lot of their friends have liked it as well.
@@ -66,9 +51,7 @@ It's worth exploring removing voting entirely and have a ranking system based
 purely on engagement (e.g. views and comments), however.
 
 
-<!-- ### {{ .OTHER_THINGS }} -->
-
-## Maximize Community Engagement
+** Maximize Community Engagement
 
 Dedicated fans are worth their weight in gold. They are the types of people that
 will go out and promote your content any chance they get, and they contribute
@@ -78,9 +61,9 @@ the frequency of these such individuals.
 Building out a custom site does something which is impossible to attain on
 reddit: be its own island.
 
-```
+#+BEGIN_SRC
 this forum <=[!]=> reddit.com
-```
+#+END_SRC
 
 When you're on a subreddit, you are inside the Reddit community, people will
 reference subreddits, and travel around the site as they please, but with a
@@ -89,9 +72,7 @@ community. While there will be less casual passers by, the people that *do* come
 are going to be much more dedicated on average.
 
 
-## Reward High-Quality Contributions
+** Reward High-Quality Contributions
 
 When someone posts an essay they spent several hours on, they should get
 "rewarded" more than someone who reposed a le epic dank meme. 
-
-> I wrote a manifesto for a site I only have a few hundred lines of code in :)
