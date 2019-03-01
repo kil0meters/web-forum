@@ -9,13 +9,13 @@
             </div>
             <div class="content-block">
                 <form class="signup-form" action="/signup" method="post">
-                    Username <br/>
-                    <input class="form-input" name="username" type="text" value="" required/> <br/>
+                    Username (numbers, letters, and underscores) <br/>
+                    <input class="form-input" name="username" type="text" pattern="[a-zA-Z0-9_]+" maxlength="16" required/> <br/>
                     Email <br/>
-                    <input class="form-input" name="email" type="email" value="" required/> <br/>
+                    <input class="form-input" name="email" type="email" required/> <br/>
                     Password (min. 12 characters)<br/>
                     <input class="form-input" name="password" type="password" minlength="12" required/> <br/>
-                    Remember me <input name="" type="checkbox" value=""/> <br/>
+                    <input name="" type="checkbox" value="">Remember me</input> <br/>
                     <input class="submit-button" type="submit" value="Submit"/>
                 </form>
             </div>
