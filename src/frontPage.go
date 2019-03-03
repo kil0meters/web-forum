@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
-	"math/rand"
 	"net/http"
 	"text/template"
 	"time"
@@ -13,21 +12,6 @@ import (
 type FrontPage struct {
 	Posts      []Post `json:"posts"`
 	PageNumber int32  `json:"page_number"`
-}
-
-// I should probably make sure two posts don't share the same id as that could
-// break things
-var charSet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUV1234567890@$^-_+"
-var idLength = 6
-
-func randomId() string {
-	id := make([]byte, idLength)
-
-	for i := 0; i < idLength; i++ {
-		id[i] = charSet[rand.Intn(len(charSet))]
-	}
-
-	return string(id)
 }
 
 func getFrontPageData() FrontPage {
@@ -65,7 +49,7 @@ func getFrontPageData() FrontPage {
 			Id:    id,
 			Title: title,
 			Date:  dateString,
-			Author: Account{
+			Author: User{
 				Username:     author,
 				CreatedAt:    time.Now(),
 				PasswordHash: "nil",
@@ -76,24 +60,9 @@ func getFrontPageData() FrontPage {
 			CommentCount:  commentCount,
 		})
 	}
+
 	rows.Close()
 
-	// for i := 0; i < 10; i++ {
-	// 	posts[i] = Post{
-	// 		Id:    randomId(),
-	// 		Title: "Lorem Ipsum",
-	// 		Date:  time.Now(),
-	// 		Author: Account{
-	// 			Username:     "kilometers",
-	// 			CreatedAt:    time.Now(),
-	// 			PasswordHash: "ajsdfj",
-	// 		},
-	// 		Body:          "{}",
-	// 		UpvoteCount:   int32(i),
-	// 		DownvoteCount: 0,
-	// 		CommentCount:  0,
-	// 	}
-	// }
 	return FrontPage{
 		Posts:      posts,
 		PageNumber: 1,

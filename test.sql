@@ -1,12 +1,22 @@
 CREATE TABLE IF NOT EXISTS posts (
-  id             TEXT     PRIMARY KEY,
+  post_id        TEXT     PRIMARY KEY,
   title          TEXT,
   date           TEXT,
   author         TEXT,
   body           TEXT,
   upvote_count   INTEGER,
   downvote_count INTEGER,
-  comment_count  INTEGER
+  comment_count  INTEGER,
+
+  UNIQUE(post_id)
+);
+
+CREATE TABLE IF NOT EXISTS users (
+  username TEXT PRIMARY KEY,
+  email    TEXT,
+  password TEXT,
+
+  UNIQUE(username)
 );
 
 INSERT INTO posts VALUES (
@@ -19,7 +29,6 @@ INSERT INTO posts VALUES (
   13000,
   57
 );
-
 INSERT INTO posts VALUES (
   '_QnVIw',
   'Mueller Files Sentencing Memo Against Paul Manafort',
@@ -30,7 +39,6 @@ INSERT INTO posts VALUES (
   17000,
   1000
 );
-
 INSERT INTO posts VALUES (
   'DoBLK8',
   'The Lord of the Rings- The Two Towers (2002)',
@@ -41,7 +49,6 @@ INSERT INTO posts VALUES (
   8,
   304
 );
-
 INSERT INTO posts VALUES (
   'k@oh_q',
   'I make things out of yarn. Heres a sweater I knitted and a Charizard I just finished crocheting.',

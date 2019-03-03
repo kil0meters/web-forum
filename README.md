@@ -3,8 +3,13 @@
 
 An experimental web forum to be used as hub for my non-existent community.
 
+<<<<<<< Updated upstream:README.md
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
+=======
+
+* Building
+>>>>>>> Stashed changes:README.org
 
 - [web-forum](#web-forum)
 - [Building](#building)
