@@ -1,10 +1,10 @@
 package web_forum
 
 import (
-	// "encoding/json"
+	"errors"
 	"fmt"
-	// "log"
 	"net/http"
+	"regexp"
 	"text/template"
 	"time"
 
@@ -18,10 +18,6 @@ type User struct {
 	Email        string    `json:"email"`
 	PasswordHash string    `json:"password_hash"`
 	CreatedAt    time.Time `json:"created_at"`
-}
-
-func registerAccount(username string, email string, passwordHash string) {
-
 }
 
 func (c *Hash) Generate(s string) (string, error) {
@@ -41,6 +37,39 @@ func (c *Hash) Compare(hash string, s string) bool {
 	return err == nil
 }
 
+func registerAccount(username string, email string, password string) error {
+
+	// validate inputs on the server because
+	// that's what you're supposed to do or something
+
+	matched, _ := regexp.MatchString("^[a-zA-Z0-9_-]{1,16}", username)
+	if matched == false {
+		return errors.New("Invalid username")
+	}
+
+	matched, _ = regexp.MatchString("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$", email)
+	if matched == false {
+		return errors.New("Invalid email address")
+	}
+
+	matched, _ = regexp.MatchString("^[a-zA-Z0-9]{12,512}", password)
+	if matched == false {
+		return errors.New("Invalid password")
+	}
+
+	// because the database is UNIQUE, an error will be raised if someone tries to create
+	// an account with a username which is already present in the database
+
+	_, err := db.Exec("INSERT INTO users (username, email, password) VALUES ($1, $2, $3)",
+		username, email, password)
+
+	if err != nil {
+		return errors.New("Username exists")
+	}
+
+	return nil
+}
+
 func signupPageHandler(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 	if r.Method == "POST" {
@@ -50,15 +79,10 @@ func signupPageHandler(w http.ResponseWriter, r *http.Request) {
 		password := r.Form["password"][0]
 
 		if len(username) != 0 && len(email) != 0 && len(password) != 0 {
-			// hash password
-
-			hashedPassword := password
-
-			_, err := db.Query("INSERT INTO users (username, email, password) VALUES ($1, $2, $3)",
-				username, email, hashedPassword)
+			err := registerAccount(username, email, password)
 
 			if err != nil {
-				fmt.Fprintf(w, "error: Username exists\n\n%s", err)
+				fmt.Fprintf(w, "error: %s", err)
 			} else {
 				fmt.Fprintf(w, "Account created")
 			}
