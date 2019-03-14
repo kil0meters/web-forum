@@ -35,6 +35,9 @@ func StartServer() {
 	r.HandleFunc("/submit", newPostHandler)
 	r.HandleFunc("/submit/", newPostHandler)
 
+	r.HandleFunc("/signup", signupPageHandler)
+	r.HandleFunc("/signup/", signupPageHandler)
+
 	r.HandleFunc("/posts/{id}", postHandler)
 
 	r.HandleFunc("/api/front", frontPageApiHandler)

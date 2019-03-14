@@ -12,7 +12,7 @@ type Post struct {
 	Id            string    `json:"id"`
 	Title         string    `json:"title"`
 	Date          time.Time `json:"date"`
-	Author        Account   `json:"author"`
+	Author        User      `json:"author"`
 	Body          string    `json:"body"`
 	UpvoteCount   int32     `json:"upvote_count"`
 	DownvoteCount int32     `json:"downvote_count"`
@@ -22,7 +22,7 @@ type Post struct {
 func newPostHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("template/postEditor.html")
 	if err != nil {
-		fmt.Fprintf(w, "503: ", err)
+		fmt.Fprintf(w, "503: %s", err)
 	} else {
 		tmpl.Execute(w, nil)
 	}
